@@ -8,19 +8,28 @@ import { UsersPageComponent } from './pages/users-page/components/users-page/use
 import { AppRoutingModule } from './app-routing.module'
 import { HeaderComponent } from './layouts/main-layout/components/header/header.component'
 import { AlertModule } from './modules/alert/alert.module'
+import { authorizationReducer } from './context/authorization/authorization.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AccessDeniedPageComponent } from './pages/access-denied-page/components/access-denied-page/access-denied-page.component';
+import { CentrLayoutComponent } from './layouts/centr-layout/components/centr-layout/centr-layout.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainLayoutComponent,
-    UsersPageComponent,
     HeaderComponent,
+    MainLayoutComponent,
+    CentrLayoutComponent,
+    UsersPageComponent,
+    AccessDeniedPageComponent,
   ],
   imports: [
     BrowserModule,
     StoreModule.forRoot({}, {}),
+    StoreModule.forFeature('authorization', authorizationReducer),
+
     AppRoutingModule,
     AlertModule,
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
