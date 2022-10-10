@@ -41,6 +41,7 @@ app-create-user-page {
 .main {
   grid-area: main;
   overflow: auto;
+  display: grid;
 }
 
 .left-panel {

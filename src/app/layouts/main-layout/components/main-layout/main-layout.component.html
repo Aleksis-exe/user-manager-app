@@ -12,7 +12,12 @@
   <ng-content select="[right-panel]"></ng-content>
 </div>
 <div class="main">
-  <ng-content></ng-content>
+  <ng-content *ngIf="!loading$; else content"></ng-content>
+  <ng-template #content>
+    <app-loading
+      style="display: flex; align-items: center; justify-content: center"
+    ></app-loading
+  ></ng-template>
 </div>
 <div class="footer">
   <footer class="border-top text-muted">{{ version }}@{{ author }}</footer>

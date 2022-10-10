@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import setup from 'package.json'
 import { Observable } from 'rxjs'
@@ -11,6 +11,8 @@ import * as authorizationSelect from 'src/app/context/authorization/authorizatio
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent implements OnInit {
+  @Input('loading') loading$: boolean = true
+
   ticket$: Observable<ITicket | null> | undefined
 
   version: string = ''
