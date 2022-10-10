@@ -14,6 +14,9 @@ import { AccessDeniedPageComponent } from './pages/access-denied-page/components
 import { CentrLayoutComponent } from './layouts/centr-layout/components/centr-layout/centr-layout.component'
 import { AuthorizationEffect } from './context/authorization/authorization.effect'
 import { HttpClientModule } from '@angular/common/http'
+import { usersReducer } from './context/users/users.reducer'
+import { UsersEffect } from './context/users/users.effect';
+import { LoadingComponent } from './layouts/main-layout/components/loading/loading.component'
 
 @NgModule({
   declarations: [
@@ -23,13 +26,15 @@ import { HttpClientModule } from '@angular/common/http'
     CentrLayoutComponent,
     UsersPageComponent,
     AccessDeniedPageComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),
     StoreModule.forFeature('authorization', authorizationReducer),
-    EffectsModule.forRoot([AuthorizationEffect]),
+    StoreModule.forFeature('users', usersReducer),
+    EffectsModule.forRoot([AuthorizationEffect, UsersEffect]),
     AppRoutingModule,
     AlertModule,
   ],
