@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<div *ngIf="(loading$ | async); else content" style="display: inherit">
+  <centr-layout>
+    <div>Авторизация</div>
+  </centr-layout>
+</div>
+<ng-template #content>
+  <router-outlet></router-outlet>
+</ng-template>
+<app-alert></app-alert>
