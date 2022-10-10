@@ -1,8 +1,8 @@
 <div class="header">
   <header-layout
     title="user manager console"
-    username="username"
-    icon="/assets/logo192.png"
+    [username]="getUserName(ticket$ | async)"
+    [icon]="getIcon(ticket$ | async)"
   ></header-layout>
 </div>
 <div class="left-panel border-end">
