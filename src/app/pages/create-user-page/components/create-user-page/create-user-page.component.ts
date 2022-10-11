@@ -10,8 +10,8 @@ import {
 import { Router } from '@angular/router'
 import { select, Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
-import { loadingSelector } from 'src/app/context/authorization/authorization.select'
 import { createUserAction } from 'src/app/context/create-user/create-user.action'
+import { loadingSelector } from 'src/app/context/create-user/create-user.select'
 import { ICreateUser } from 'src/app/interfaces/create-user'
 import { maskString } from 'src/app/modules/expansion/expansion'
 
@@ -95,7 +95,7 @@ export class CreateUserPageComponent implements OnInit {
       Email: this.form.get('email')?.value,
       Password: this.form.get('password')?.value,
     }
-    this.store.dispatch(createUserAction({user}))
+    this.store.dispatch(createUserAction({ user }))
   }
 
   buffSrcImage() {

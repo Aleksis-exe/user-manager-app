@@ -9,7 +9,7 @@ const reducer = createReducer(
   initialState,
   on(action.createUserAction, () => ({ loading: true })),
   on(action.createUserSuccessAction, () => ({
-    loading: true,
+    loading: false,
   })),
   on(action.createUserFailureAction, () => ({
     ...initialState,
