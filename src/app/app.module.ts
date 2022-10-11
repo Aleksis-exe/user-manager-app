@@ -15,8 +15,13 @@ import { CentrLayoutComponent } from './layouts/centr-layout/components/centr-la
 import { AuthorizationEffect } from './context/authorization/authorization.effect'
 import { HttpClientModule } from '@angular/common/http'
 import { usersReducer } from './context/users/users.reducer'
-import { UsersEffect } from './context/users/users.effect';
+import { UsersEffect } from './context/users/users.effect'
 import { LoadingComponent } from './layouts/main-layout/components/loading/loading.component'
+import { SidebarComponent } from './pages/users-page/components/sidebar/sidebar.component'
+import { CreateUserPageComponent } from './pages/create-user-page/components/create-user-page/create-user-page.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { createUserReducer } from './context/create-user/create-user.reducer'
+import { CreateUserEffect } from './context/create-user/create-user.effect'
 
 @NgModule({
   declarations: [
@@ -27,6 +32,8 @@ import { LoadingComponent } from './layouts/main-layout/components/loading/loadi
     UsersPageComponent,
     AccessDeniedPageComponent,
     LoadingComponent,
+    SidebarComponent,
+    CreateUserPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,9 +41,12 @@ import { LoadingComponent } from './layouts/main-layout/components/loading/loadi
     StoreModule.forRoot({}, {}),
     StoreModule.forFeature('authorization', authorizationReducer),
     StoreModule.forFeature('users', usersReducer),
-    EffectsModule.forRoot([AuthorizationEffect, UsersEffect]),
+    StoreModule.forFeature('create-user', createUserReducer),
+    EffectsModule.forRoot([AuthorizationEffect, UsersEffect, CreateUserEffect]),
     AppRoutingModule,
     AlertModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,117 @@
+<main-layout [loading]="!!(loading$ | async)">
+  <div class="container">
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <div class="border-bottom mb-4">
+        <h1>новый пользователь</h1>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="d-flex justify-content-center">
+            <img
+              [src]="srcImage"
+              alt="portret"
+              class="img-thumbnail"
+              (click)="file.click()"
+            />
+            <input
+              #file
+              (change)="getImage($event)"
+              type="file"
+              style="visibility: hidden; display: none"
+              accept=".png, .jpg, .jpeg, .webp"
+              formControlName="file"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="row g-2">
+            <div class="col-12">
+              <label for="userName" class="form-label">login</label>
+              <input
+                type="text"
+                class="form-control {{ validator('userName') }}"
+                id="userName"
+                formControlName="userName"
+              />
+            </div>
+            <div class="col-6">
+              <label for="lastName" class="form-label">фамилия</label>
+              <input
+                type="text"
+                class="form-control {{ validator('lastName') }}"
+                id="lastName"
+                formControlName="lastName"
+              />
+            </div>
+            <div class="col-6">
+              <label for="firstName" class="form-label">имя</label>
+              <input
+                type="text"
+                class="form-control {{ validator('firstName') }}"
+                id="firstName"
+                formControlName="firstName"
+              />
+            </div>
+            <div class="col-12">
+              <label for="phoneNumber" class="form-label">телефон</label>
+              <input
+                type="tel"
+                class="form-control {{ validator('phoneNumber') }}"
+                id="phoneNumber"
+                formControlName="phoneNumber"
+                (change)="format($event)"
+              />
+            </div>
+            <div class="col-12">
+              <label for="email" class="form-label">email</label>
+              <input
+                type="email"
+                class="form-control {{ validator('email') }}"
+                id="email"
+                formControlName="email"
+              />
+            </div>
+            <div class="col-6">
+              <label for="password" class="form-label">password</label>
+              <input
+                type="password"
+                class="form-control {{
+                  validatorPasswords('passwordConfirmation')
+                }}"
+                id="password"
+                formControlName="password"
+              />
+            </div>
+            <div class="col-6">
+              <label for="passwordConfirmation" class="form-label"
+                >confirmed</label
+              >
+              <input
+                type="password"
+                class="form-control {{
+                  validatorPasswords('passwordConfirmation')
+                }}"
+                id="passwordConfirmation"
+                formControlName="passwordConfirmation"
+              />
+              <div
+                *ngIf="form.errors?.['matchingPasswords']"
+                class="invalid-feedback"
+              >
+                пароли не совпадают
+              </div>
+            </div>
+            <div class="col-12 mt-4 d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary me-2">
+                сохранить
+              </button>
+              <button (click)="close()" type="submit" class="btn btn-danger">
+                отмена
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</main-layout>
