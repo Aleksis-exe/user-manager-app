@@ -102,7 +102,7 @@
               </div>
             </div>
             <div class="col-12 mt-4 d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary me-2">
+              <button *ngIf="form.valid" type="submit" class="btn btn-primary me-2">
                 сохранить
               </button>
               <button (click)="close()" type="submit" class="btn btn-danger">
