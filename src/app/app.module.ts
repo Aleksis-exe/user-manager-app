@@ -22,6 +22,16 @@ import { CreateUserPageComponent } from './pages/create-user-page/components/cre
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { createUserReducer } from './context/create-user/create-user.reducer'
 import { CreateUserEffect } from './context/create-user/create-user.effect'
+import { UpdateUserPageComponent } from './pages/update-user-page/components/update-user-page/update-user-page.component'
+import { SidebarUpdateUserComponent } from './pages/update-user-page/components/sidebar-update-user/sidebar-update-user.component'
+import { FormUpdateUserComponent } from './pages/update-user-page/components/form-update-user/form-update-user.component'
+import { SidebarCreateUserComponent } from './pages/create-user-page/components/sidebar-create-user/sidebar-create-user.component'
+import { updateUserReducer } from './context/update-user/update-user.reducer'
+import { ErrorHandler } from './error-handler'
+import { UpdateUserEffect } from './context/update-user/update-user.effect'
+import { SafePipeModule } from './modules/safe-pipe/safe-pipe.module';
+import { ChangePasswordUserComponent } from './pages/update-user-page/components/change-password-user/change-password-user.component';
+import { ChangeUserRolesComponent } from './pages/update-user-page/components/change-user-roles/change-user-roles.component'
 
 @NgModule({
   declarations: [
@@ -34,6 +44,12 @@ import { CreateUserEffect } from './context/create-user/create-user.effect'
     LoadingComponent,
     SidebarComponent,
     CreateUserPageComponent,
+    UpdateUserPageComponent,
+    SidebarUpdateUserComponent,
+    FormUpdateUserComponent,
+    SidebarCreateUserComponent,
+    ChangePasswordUserComponent,
+    ChangeUserRolesComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,13 +58,20 @@ import { CreateUserEffect } from './context/create-user/create-user.effect'
     StoreModule.forFeature('authorization', authorizationReducer),
     StoreModule.forFeature('users', usersReducer),
     StoreModule.forFeature('create-user', createUserReducer),
-    EffectsModule.forRoot([AuthorizationEffect, UsersEffect, CreateUserEffect]),
+    StoreModule.forFeature('update-user', updateUserReducer),
+    EffectsModule.forRoot([
+      AuthorizationEffect,
+      UsersEffect,
+      CreateUserEffect,
+      UpdateUserEffect,
+    ]),
     AppRoutingModule,
     AlertModule,
     FormsModule,
     ReactiveFormsModule,
+    SafePipeModule,
   ],
-  providers: [],
+  providers: [ErrorHandler],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

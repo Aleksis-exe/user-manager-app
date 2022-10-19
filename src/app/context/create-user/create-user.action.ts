@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store'
-import { ICreateUser } from 'src/app/interfaces/create-user'
+import { ICreateUser } from 'src/app/interfaces/create-user.interface'
 import { ActionTypes } from './create-user.action-type'
 
 export const createUserAction = createAction(

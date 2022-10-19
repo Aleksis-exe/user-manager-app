@@ -1,9 +1,12 @@
 <main-layout [loading]="!!(loading$ | async)">
   <users-sidebar left-panel></users-sidebar>
   <div class="container">
-    <table class="table table-borderless align-middle">
+    <table class="table table-striped align-middle">
       <tbody>
-        <tr *ngFor="let user of users$ | async">
+        <tr
+          *ngFor="let user of (users$ | async)"
+          routerLink="/update/{{ user.id }}"
+        >
           <td>
             <img
               width="64"

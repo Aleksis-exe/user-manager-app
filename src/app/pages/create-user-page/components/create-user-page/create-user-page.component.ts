@@ -12,7 +12,7 @@ import { select, Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 import { createUserAction } from 'src/app/context/create-user/create-user.action'
 import { loadingSelector } from 'src/app/context/create-user/create-user.select'
-import { ICreateUser } from 'src/app/interfaces/create-user'
+import { ICreateUser } from 'src/app/interfaces/create-user.interface'
 import { maskString } from 'src/app/modules/expansion/expansion'
 
 @Component({
@@ -44,7 +44,7 @@ export class CreateUserPageComponent implements OnInit {
         ]),
         password: new FormControl('', Validators.required),
         passwordConfirmation: new FormControl('', Validators.required),
-        file: new FormControl(),
+        file: new FormControl(null, Validators.required),
       },
       { validators: this.matchingPasswordsValidator }
     )
@@ -85,7 +85,6 @@ export class CreateUserPageComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('on submit')
     const user: ICreateUser = {
       Avatar: this.blob,
       UserName: this.form.get('userName')?.value,

@@ -1,4 +1,5 @@
 <main-layout [loading]="!!(loading$ | async)">
+  <sidebar-create-user left-panel></sidebar-create-user>
   <div class="container">
     <form [formGroup]="form" (submit)="onSubmit()">
       <div class="border-bottom mb-4">
@@ -102,11 +103,12 @@
               </div>
             </div>
             <div class="col-12 mt-4 d-flex justify-content-end">
-              <button *ngIf="form.valid" type="submit" class="btn btn-primary me-2">
+              <button
+                *ngIf="form.valid"
+                type="submit"
+                class="btn btn-primary me-2"
+              >
                 сохранить
-              </button>
-              <button (click)="close()" type="button" class="btn btn-danger">
-                отмена
               </button>
             </div>
           </div>

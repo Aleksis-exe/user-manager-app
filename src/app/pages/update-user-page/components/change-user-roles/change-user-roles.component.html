@@ -1,0 +1,103 @@
+<div class="border-top mt-4">
+  <p class="fs-3">член групп</p>
+  <form [formGroup]="uninstallRoleForm" (submit)="uninstallRole()">
+    <div class="row">
+      <div class="col">
+        <select
+          class="form-select"
+          *ngFor="let item of getRoles(user$ | async)"
+          size="8"
+          formControlName="nameRole"
+        >
+          <option class="list-group-item fw-italic" [value]="item.name">
+            {{ item.description }}
+          </option>
+        </select>
+      </div>
+      <div class="col-auto d-flex flex-column">
+        <button
+          type="button"
+          class="btn btn-outline-secondary btn-sm mb-3"
+          (click)="open()"
+        >
+          добавить
+        </button>
+        <button type="submit" class="btn btn-outline-danger btn-sm">
+          удалить
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- Modal install role -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <form
+      [formGroup]="installRoleForm"
+      (submit)="installRole()"
+      *ngIf="!!(loadingAllRole$ | async)"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            выбор: "группы"
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <div class="row g-3">
+                <div class="col-12">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    id="inputAddress"
+                    placeholder="укажите наименование группы"
+                  />
+                </div>
+                <div class="col-12">
+                  <label
+                    for="colFormLabelSm"
+                    class="col-sm-2 col-form-label col-form-label-sm"
+                    >группы</label
+                  >
+                  <select
+                    class="form-select"
+                    *ngFor="let item of allRole$ | async"
+                    size="6"
+                    formControlName="nameRole"
+                  >
+                    <option [value]="item.name">{{ item.description }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary btn-sm"
+            data-bs-dismiss="modal"
+          >
+            отмена
+          </button>
+          <button type="submit" class="btn btn-primary btn-sm">выбрать</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!--end -->

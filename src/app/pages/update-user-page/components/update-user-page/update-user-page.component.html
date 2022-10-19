@@ -1,0 +1,11 @@
+<main-layout [loading]="!!(loading$ | async)">
+  <sidebar-update-user left-panel></sidebar-update-user>
+  <div class="container">
+    <form-update-user
+      *ngIf="!!!(loading$ | async)"
+      [user]="getUser(user$ | async)"
+    ></form-update-user>
+    <change-password-user></change-password-user>
+    <change-user-roles></change-user-roles>
+  </div>
+</main-layout>
