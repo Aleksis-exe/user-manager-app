@@ -1,6 +1,6 @@
 {
   "name": "user-manager-app",
-  "version": "0.0.0",
+  "version": "0.0.1a",
   "author": "Alexey Dzhanibekov",
   "scripts": {
     "ng": "ng",
