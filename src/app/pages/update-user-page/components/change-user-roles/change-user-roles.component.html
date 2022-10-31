@@ -3,13 +3,12 @@
   <form [formGroup]="uninstallRoleForm" (submit)="uninstallRole()">
     <div class="row">
       <div class="col">
-        <select
-          class="form-select"
-          *ngFor="let item of getRoles(user$ | async)"
-          size="8"
-          formControlName="nameRole"
-        >
-          <option class="list-group-item fw-italic" [value]="item.name">
+        <select class="form-select" size="8" formControlName="nameRole">
+          <option
+            *ngFor="let item of getRoles(user$ | async)"
+            class="list-group-item fw-italic"
+            [value]="item.name"
+          >
             {{ item.description }}
           </option>
         </select>
@@ -75,11 +74,15 @@
                   >
                   <select
                     class="form-select"
-                    *ngFor="let item of allRole$ | async"
                     size="6"
                     formControlName="nameRole"
                   >
-                    <option [value]="item.name">{{ item.description }}</option>
+                    <option
+                      *ngFor="let item of allRole$ | async"
+                      [value]="item.name"
+                    >
+                      {{ item.description }}
+                    </option>
                   </select>
                 </div>
               </div>
